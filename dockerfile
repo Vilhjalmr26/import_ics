@@ -11,14 +11,11 @@ RUN apk update && apk add tzdata
 
 COPY ./import_ics /import_ics
 WORKDIR import_ics
-RUN rm -R .git
-RUN rm ical_export/.gitignore
+RUN mkdir ical_export
 RUN mkdir samples
-RUN mv .env samples/sample.env
 RUN mv calendar_download_map.py samples/calendar_download_map.py
 
 RUN mkdir /config
-RUN ln -s /config/.env .env
 RUN ln -s /config/calendar_download_map.py calendar_download_map.py
 
 RUN pip install -r requirements.txt
